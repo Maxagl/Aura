@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "EnhancedInputComponent.h"
-#include "EnhancedInputSubsystems.h"
 // å¥ê∂ìIóvï˙ç≈ç@ñ 
 #include "Player/AuraPlayerController.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
@@ -49,7 +50,7 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
-		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.X);
+		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 
 	}
 }
