@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameplayEffectTypes.h"
 #include "AuraEffectActor.generated.h"
 
 class USphereComponent;
@@ -20,7 +21,7 @@ enum class EEfectApplicationPolicy
 UENUM(BlueprintType)
 enum class EEfectRemovalPolicy
 {
-	RemoveOnOverlap,
+	RemoveOnEndOverlap,
 	DoNotRemove
 };
 
@@ -69,7 +70,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	EEfectApplicationPolicy InfiniteEffectApplicationPolicy = EEfectApplicationPolicy::DoNotApply;
 
-	EEfectRemovalPolicy InfiniteEffectRemovalPolicy = EEfectRemovalPolicy::RemoveOnOverlap;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	EEfectRemovalPolicy InfiniteEffectRemovalPolicy = EEfectRemovalPolicy::RemoveOnEndOverlap;
+
+	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	float ActorLevel = 1.f;
+
 private:
 
 };
